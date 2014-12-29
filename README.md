@@ -116,3 +116,7 @@ func main() {
 ## google app engine
 
 google app engine does not support using the net/http package directly. the [zencoder-gae](http://github.com/streamrail/zencoder-gae) package uses appengine/urlfetch instead 
+
+## license
+
+MIT (see LICENSE file)
