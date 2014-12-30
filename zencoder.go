@@ -69,10 +69,13 @@ func (c *Client) Zencode(input string, outputs []map[string]interface{}, notific
 	if err != nil {
 		return nil, err
 	}
-
+	notificationsStr, err := json.Marshal(notifications)
+	if err != nil {
+		return nil, err
+	}
 	reqStr := ""
 	if notifications != nil && len(notifications) > 0 {
-		reqStr = fmt.Sprintf("{\"input\":\"%s\",\"output\":%s\", \"notifications\":%s}", input, outputsStr, notifications)
+		reqStr = fmt.Sprintf("{\"input\":\"%s\",\"output\":%s, \"notifications\":%s}", input, outputsStr, notificationsStr)
 	} else {
 		reqStr = fmt.Sprintf("{\"input\":\"%s\",\"output\":%s\"}", input, outputsStr)
 	}
