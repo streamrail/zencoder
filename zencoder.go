@@ -64,12 +64,18 @@ func NewClient(options *Options) (*Client, error) {
 	}, nil
 }
 
-func (c *Client) Zencode(input string, outputs []map[string]interface{}) (map[string]interface{}, error) {
+func (c *Client) Zencode(input string, outputs []map[string]interface{}, notifications []string) (map[string]interface{}, error) {
 	outputsStr, err := json.Marshal(outputs)
 	if err != nil {
 		return nil, err
 	}
-	reqStr := fmt.Sprintf("{\"input\": \"%s\",\"output\" :%s\"}", input, outputsStr)
+
+	reqStr := ""
+	if notifications != nil && len(notifications) > 0 {
+		reqStr = fmt.Sprintf("{\"input\":\"%s\",\"output\":%s\", \"notifications\":%s}", input, outputsStr, notifications)
+	} else {
+		reqStr = fmt.Sprintf("{\"input\":\"%s\",\"output\":%s\"}", input, outputsStr)
+	}
 	fmt.Printf("reqStr: %s", reqStr)
 	if req, err := http.NewRequest("POST", c.apiEndpoint,
 		bytes.NewBuffer([]byte(reqStr))); err != nil {
