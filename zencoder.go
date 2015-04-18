@@ -38,11 +38,14 @@ type JobSpec struct {
 }
 
 type Output struct {
+	Credentials             string    `json:"credentials,omitempty"`
 	Label                   string    `json:"label,omitempty"`
 	StreamingDeliveryFormat string    `json:"streaming_delivery_format,omitempty"`
 	VideoBitrate            int       `json:"video_bitrate,omitempty"`
 	Type                    string    `json:"type,omitempty"`
 	Url                     string    `json:"url,omitempty"`
+	BaseUrl                 string    `json:"base_url,omitempty"`
+	FileName                string    `json:"filename,omitempty"`
 	Streams                 []*Stream `json:"streams,omitempty"`
 	Notifications           []string  `json:"notifications,omitempty"`
 	Headers                 *Headers  `json:"headers,omitempty"`
