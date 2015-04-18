@@ -29,6 +29,27 @@ type Options struct {
 	Timeout      int
 }
 
+type JobSpec struct {
+	Input         string    `json:"input"`
+	Outputs       []*Output `json:"outputs"`
+	Notifications []string  `json:"notifications"`
+}
+
+type Output struct {
+	Label                   string    `json:"label"`
+	StreamingDeliveryFormat string    `json:"streaming_delivery_format"`
+	VideoBitrate            int       `json:"video_bitrate"`
+	Type                    string    `json:"type"`
+	Url                     string    `json:"url"`
+	Streams                 []*Stream `json:"streams"`
+	Notifications           []string  `json:"notifications"`
+}
+
+type Stream struct {
+	Source string `json:"source"`
+	Path   string `json:"path"`
+}
+
 func NewClient(options *Options) (*Client, error) {
 	if options == nil {
 		err := fmt.Errorf("error: cannot init Zencoder client without Options")
@@ -64,24 +85,14 @@ func NewClient(options *Options) (*Client, error) {
 	}, nil
 }
 
-func (c *Client) Zencode(input string, outputs []map[string]interface{}, notifications []string) (map[string]interface{}, error) {
-	outputsStr, err := json.Marshal(outputs)
+func (c *Client) Zencode(spec *JobSpec) (map[string]interface{}, error) {
+	jsonRequest, err := json.Marshal(spec)
 	if err != nil {
 		return nil, err
 	}
-	notificationsStr, err := json.Marshal(notifications)
-	if err != nil {
-		return nil, err
-	}
-	reqStr := ""
-	if notifications != nil && len(notifications) > 0 {
-		reqStr = fmt.Sprintf("{\"input\":\"%s\",\"output\":%s, \"notifications\":%s}", input, outputsStr, notificationsStr)
-	} else {
-		reqStr = fmt.Sprintf("{\"input\":\"%s\",\"output\":%s\"}", input, outputsStr)
-	}
-	fmt.Printf("reqStr: %s", reqStr)
+	fmt.Printf("jsonRequest: %s", string(jsonRequest))
 	if req, err := http.NewRequest("POST", c.apiEndpoint,
-		bytes.NewBuffer([]byte(reqStr))); err != nil {
+		bytes.NewBuffer(jsonRequest)); err != nil {
 		return nil, err
 	} else {
 		req.Header.Add("Content-Type", c.responseType)
