@@ -30,24 +30,24 @@ type Options struct {
 }
 
 type JobSpec struct {
-	Input         string    `json:"input"`
-	Outputs       []*Output `json:"outputs"`
-	Notifications []string  `json:"notifications"`
+	Input         string    `json:"input,omitempty"`
+	Outputs       []*Output `json:"outputs,omitempty"`
+	Notifications []string  `json:"notifications,omitempty"`
 }
 
 type Output struct {
-	Label                   string    `json:"label"`
-	StreamingDeliveryFormat string    `json:"streaming_delivery_format"`
-	VideoBitrate            int       `json:"video_bitrate"`
-	Type                    string    `json:"type"`
-	Url                     string    `json:"url"`
-	Streams                 []*Stream `json:"streams"`
-	Notifications           []string  `json:"notifications"`
+	Label                   string    `json:"label,omitempty"`
+	StreamingDeliveryFormat string    `json:"streaming_delivery_format,omitempty"`
+	VideoBitrate            int       `json:"video_bitrate,omitempty"`
+	Type                    string    `json:"type,omitempty"`
+	Url                     string    `json:"url,omitempty"`
+	Streams                 []*Stream `json:"streams,omitempty"`
+	Notifications           []string  `json:"notifications,omitempty"`
 }
 
 type Stream struct {
-	Source string `json:"source"`
-	Path   string `json:"path"`
+	Source string `json:"source,omitempty"`
+	Path   string `json:"path,omitempty"`
 }
 
 func NewClient(options *Options) (*Client, error) {
