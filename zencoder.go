@@ -38,6 +38,7 @@ type JobSpec struct {
 }
 
 type Output struct {
+	Public                  bool      `json:"public,omitempty"`
 	Credentials             string    `json:"credentials,omitempty"`
 	Label                   string    `json:"label,omitempty"`
 	StreamingDeliveryFormat string    `json:"streaming_delivery_format,omitempty"`
@@ -52,7 +53,8 @@ type Output struct {
 }
 
 type Headers struct {
-	GoogleAcl string `json:"x-goog-acl,omitempty"`
+	GoogleAcl    string `json:"x-goog-acl,omitempty"`
+	CacheControl string `json:"Cache-Control,omitempty"`
 }
 
 type Stream struct {
