@@ -43,6 +43,11 @@ type Output struct {
 	Url                     string    `json:"url,omitempty"`
 	Streams                 []*Stream `json:"streams,omitempty"`
 	Notifications           []string  `json:"notifications,omitempty"`
+	Headers                 *Headers  `json:"headers,omitempty"`
+}
+
+type Headers struct {
+	GoogleAcl string `json:"x-goog-acl,omitempty"`
 }
 
 type Stream struct {
