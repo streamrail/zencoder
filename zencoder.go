@@ -30,6 +30,8 @@ type Options struct {
 }
 
 type JobSpec struct {
+	Test          bool      `json:"test,omitempty"`
+	Region        string    `json:"region,omitempty"`
 	Input         string    `json:"input,omitempty"`
 	Outputs       []*Output `json:"outputs,omitempty"`
 	Notifications []string  `json:"notifications,omitempty"`
