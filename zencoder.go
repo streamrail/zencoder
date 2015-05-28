@@ -62,6 +62,64 @@ type Stream struct {
 	Path   string `json:"path,omitempty"`
 }
 
+type Notification struct {
+	Outputs []struct {
+		Height                int     `json:"height,omitempty"`
+		Audio_sample_rate     int     `json:"audio_sample_rate,omitempty"`
+		Frame_rate            float64 `json:"frame_rate,omitempty"`
+		Channels              string  `json:"channels,omitempty"`
+		Duration_in_ms        int     `json:"duration_in_ms,omitempty"`
+		Video_bitrate_in_kbps int     `json:"video_bitrate_in_kbps,omitempty"`
+		Video_codec           string  `json:"video_codec,omitempty"`
+		Format                string  `json:"format,omitempty"`
+		Audio_codec           string  `json:"audio_codec,omitempty"`
+		Label                 string  `json:"label,omitempty"`
+		File_size_in_bytes    int     `json:"file_size_in_bytes,omitempty"`
+		Width                 int     `json:"width,omitempty"`
+		Audio_bitrate_in_kbps int     `json:"audio_bitrate_in_kbps,omitempty"`
+		Id                    int     `json:"id,omitempty"`
+		Total_bitrate_in_kbps int     `json:"total_bitrate_in_kbps,omitempty"`
+		State                 string  `json:"state,omitempty"`
+		Url                   string  `json:"url,omitempty"`
+		Md5_checksum          string  `json:"md5_checksum,omitempty"`
+		Thumbnails            []struct {
+			Label  string `json:"label,omitempty"`
+			Images []struct {
+				Url             string `json:"url,omitempty"`
+				Format          string `json:"format,omitempty"`
+				File_size_bytes int    `json:"file_size_bytes,omitempty"`
+				Dimensions      string `json:"dimensions,omitempty"`
+			}
+		}
+	}
+	Job struct {
+		Created_at   string `json:"created_at,omitempty"`
+		Pass_through string `json:"pass_through,omitempty"`
+		Updated_at   string `json:"updated_at,omitempty"`
+		Submitted_at string `json:"submitted_at,omitempty"`
+		Id           int    `json:"id,omitempty"`
+		State        string `json:"state,omitempty"`
+	}
+	Input struct {
+		Height                int     `json:"height,omitempty"`
+		Audio_sample_rate     int     `json:"audio_sample_rate,omitempty"`
+		Frame_rate            float64 `json:"frame_rate,omitempty"`
+		Channels              string  `json:"channels,omitempty"`
+		Duration_in_ms        int     `json:"duration_in_ms,omitempty"`
+		Video_bitrate_in_kbps int     `json:"video_bitrate_in_kbps,omitempty"`
+		Video_codec           string  `json:"video_codec,omitempty"`
+		Format                string  `json:"format,omitempty"`
+		Audio_codec           string  `json:"audio_codec,omitempty"`
+		File_size_in_bytes    int     `json:"file_size_in_bytes,omitempty"`
+		Width                 int     `json:"width,omitempty"`
+		Audio_bitrate_in_kbps int     `json:"audio_bitrate_in_kbps,omitempty"`
+		Id                    int     `json:"id,omitempty"`
+		State                 string  `json:"state,omitempty"`
+		Total_bitrate_in_kbps int     `json:"total_bitrate_in_kbps,omitempty"`
+		Md5_checksum          string  `json:"md5_checksum,omitempty"`
+	}
+}
+
 func NewClient(options *Options) (*Client, error) {
 	if options == nil {
 		err := fmt.Errorf("error: cannot init Zencoder client without Options")
