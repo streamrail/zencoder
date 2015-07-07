@@ -45,6 +45,7 @@ type Output struct {
 	VideoBitrate            int       `json:"video_bitrate,omitempty"`
 	Type                    string    `json:"type,omitempty"`
 	Url                     string    `json:"url,omitempty"`
+	Height                  int       `json:"height,omitempty"`
 	BaseUrl                 string    `json:"base_url,omitempty"`
 	FileName                string    `json:"filename,omitempty"`
 	Streams                 []*Stream `json:"streams,omitempty"`
