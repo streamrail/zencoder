@@ -38,19 +38,20 @@ type JobSpec struct {
 }
 
 type Output struct {
-	Public                  bool      `json:"public,omitempty"`
-	Credentials             string    `json:"credentials,omitempty"`
-	Label                   string    `json:"label,omitempty"`
-	StreamingDeliveryFormat string    `json:"streaming_delivery_format,omitempty"`
-	VideoBitrate            int       `json:"video_bitrate,omitempty"`
-	Type                    string    `json:"type,omitempty"`
-	Url                     string    `json:"url,omitempty"`
-	Height                  int       `json:"height,omitempty"`
-	BaseUrl                 string    `json:"base_url,omitempty"`
-	FileName                string    `json:"filename,omitempty"`
-	Streams                 []*Stream `json:"streams,omitempty"`
-	Notifications           []string  `json:"notifications,omitempty"`
-	Headers                 *Headers  `json:"headers,omitempty"`
+	Public                   bool      `json:"public,omitempty"`
+	Credentials              string    `json:"credentials,omitempty"`
+	Label                    string    `json:"label,omitempty"`
+	StreamingDeliveryFormat  string    `json:"streaming_delivery_format,omitempty"`
+	StreamingDeliveryProfile string    `json:"streaming_delivery_profile,omitempty"`
+	VideoBitrate             int       `json:"video_bitrate,omitempty"`
+	Type                     string    `json:"type,omitempty"`
+	Url                      string    `json:"url,omitempty"`
+	Height                   int       `json:"height,omitempty"`
+	BaseUrl                  string    `json:"base_url,omitempty"`
+	FileName                 string    `json:"filename,omitempty"`
+	Streams                  []*Stream `json:"streams,omitempty"`
+	Notifications            []string  `json:"notifications,omitempty"`
+	Headers                  *Headers  `json:"headers,omitempty"`
 }
 
 type Headers struct {
